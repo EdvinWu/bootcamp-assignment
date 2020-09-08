@@ -4,15 +4,15 @@ object OutputParser {
   def mapToOutput(hands: List[RankedHand]): String = {
     val builder = new StringBuilder
     doMapToOutput(hands, builder, null)
-    builder.toString
   }
 
   @tailrec
-  private def doMapToOutput(hands: List[RankedHand], builder: StringBuilder, prev: RankedHand): Unit = {
+  private def doMapToOutput(hands: List[RankedHand], builder: StringBuilder, prev: RankedHand): String = {
     hands.sorted match {
-      case Nil => ()
+      case Nil => ""
       case head :: Nil =>
         append(prev, builder, head)
+        builder.toString
       case head :: tail =>
         append(prev, builder, head)
         doMapToOutput(tail, builder, head)
@@ -39,6 +39,7 @@ object OutputParser {
       case 13 => "K"
       case 12 => "Q"
       case 11 => "J"
+      case 10 => "T"
       case i: Int => i.toString
     }
   }

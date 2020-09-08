@@ -31,11 +31,17 @@ class InputParserTest extends AnyFlatSpec with should.Matchers {
   "it" should "be table" in {
     val res = InputParser.mapToTable(List("4cKs4h8s7s", "Ad4s", "Ac4d", "As9s", "KhKd", "5d6d"))
     res.isSuccess shouldBe true
-    res.get shouldBe getTable
+    res.get shouldBe getTable(4)
   }
 
-  private def getTable: Table = {
-    Table(river = List(Card(4, C), Card(13, S), Card(4, H), Card(8, S), Card(7, S)),
+  "it" should "be table with t" in {
+    val res = InputParser.mapToTable(List("TcKs4h8s7s", "Ad4s", "Ac4d", "As9s", "KhKd", "5d6d"))
+    res.isSuccess shouldBe true
+    res.get shouldBe getTable(10)
+  }
+
+  private def getTable(firstCardVal: Int): Table = {
+    Table(river = List(Card(firstCardVal, C), Card(13, S), Card(4, H), Card(8, S), Card(7, S)),
       hands = List[Hand](Hand(Card(14, D), Card(4, S)),
         Hand(Card(14, C), Card(4, D)),
         Hand(Card(14, S), Card(9, S)),
