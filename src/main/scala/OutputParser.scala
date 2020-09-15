@@ -21,7 +21,7 @@ object OutputParser {
 
   private def append(prev: RankedHand, builder: StringBuilder, head: RankedHand): Unit = {
     if (prev == null) ()
-    else if (head.compareTo(prev) == 0) builder.append("=")
+    else if (head.compare(prev) == 0) builder.append("=")
     else builder.append(" ")
     builder.append(getHandString(head.hand))
   }
