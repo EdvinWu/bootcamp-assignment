@@ -15,7 +15,7 @@ object Evaluator {
     val flush = getFlush(fullHand)
 
     if (fourOfKind != null)
-      RankedHand(hand, Combination.FOUR_OF_A_KIND, fourOfKind.head.value, highestNCard(fullHand, fourOfKind, 1))
+      RankedHand(hand, Combination.FOUR_OF_A_KIND, fourOfKind.head.value,   highestNCard(fullHand, fourOfKind, 1))
     else if (straightFlush != null)
       RankedHand(hand, Combination.STRAIGHT_FLUSH, highest(straightFlush, List.empty).head, List.empty)
     else if (threeOfKind != null && twoOfKind != null)
