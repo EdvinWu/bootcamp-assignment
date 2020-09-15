@@ -32,7 +32,7 @@ object Evaluator {
       RankedHand(hand, Combination.PAIR, twoOfKind.head.value, highestNCard(fullHand, twoOfKind, 3))
     else {
       val highestCards = highestNCard(fullHand, List.empty, 5)
-      RankedHand(hand, Combination.HIGH_CARD, highestCards.head, highestCards.slice(1, highestCards.last))
+      RankedHand(hand, Combination.HIGH_CARD, highestCards.head, highestCards.slice(1, highestCards.length))
     }
   }
 
