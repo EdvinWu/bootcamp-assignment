@@ -24,8 +24,11 @@ object Evaluator {
       RankedHand(hand, Combination.FLUSH, highestNCard(flush, List.empty, 1).head, List.empty)
     else if (straight != null)
       RankedHand(hand, Combination.STRAIGHT, highest(straight, List.empty).head, List.empty)
-    else if (threeOfKind != null)
-      RankedHand(hand, Combination.THREE_OF_A_KIND, threeOfKind.head.value, highestNCard(fullHand, threeOfKind, 2))
+    else if (threeOfKind != null) {
+      val highestThreeOfAKind = threeOfKind.max.value
+      val handsThree = threeOfKind.filter(_.value == highestThreeOfAKind)
+      RankedHand(hand, Combination.THREE_OF_A_KIND, highestThreeOfAKind, highestNCard(fullHand, handsThree, 2))
+    }
     else if (twoOfKind != null && group(2).size >= 4)
       RankedHand(hand, Combination.TWO_PAIR, twoOfKind.max.value, highestNCard(fullHand, twoOfKind, 1))
     else if (twoOfKind != null)
