@@ -30,7 +30,7 @@ object Evaluator {
       RankedHand(hand, Combination.THREE_OF_A_KIND, highestThreeOfAKind, highestNCard(fullHand, handsThree, 2))
     }
     else if (twoOfKind != null && group(2).size >= 4)
-      RankedHand(hand, Combination.TWO_PAIR, twoOfKind.max.value, highestNCard(fullHand, twoOfKind, 1))
+      RankedHand(hand, Combination.TWO_PAIR, twoOfKind.max.value, highestNCard(fullHand, twoOfKind, 1).appended(twoOfKind.min.value + 100))
     else if (twoOfKind != null)
       RankedHand(hand, Combination.PAIR, twoOfKind.head.value, highestNCard(fullHand, twoOfKind, 3))
     else {
