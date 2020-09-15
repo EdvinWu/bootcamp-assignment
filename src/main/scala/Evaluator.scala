@@ -71,8 +71,8 @@ case class RankedHand(hand: Hand, combination: Comb, combCardRank: Int, decision
     if (that == null) return 1
     if (this.combination == that.combination) {
       if (this.combCardRank == that.combCardRank) {
-        for ((v, i) <- this.decisionCards.sorted.zipWithIndex) {
-          val thatV = that.decisionCards.sorted.apply(i)
+        for ((v, i) <- this.decisionCards.sorted(Ordering[Int].reverse).zipWithIndex) {
+          val thatV = that.decisionCards.sorted(Ordering[Int].reverse).apply(i)
           if (v != thatV) {
             return v.compareTo(thatV)
           }
